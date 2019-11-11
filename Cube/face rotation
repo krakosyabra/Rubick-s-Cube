@@ -5,19 +5,59 @@ class face_rotation:
         self.__a = np.array(a)
     """Функция обменивания значений двух элементов массива"""
     def swap(self,a1,a2,y1,x1,y2,x2):
-        self.__a[a1,y1,x1],self.__a[a2,y2,x2] = self.__a[a2,y2,x2],self.__a[a1,y1,x1]        
-    def RightU(self):
+        self.__a[a1,y1,x1],self.__a[a2,y2,x2] = self.__a[a2,y2,x2],self.__a[a1,y1,x1]      
+    """Вращение правой грани по часовой стрелке"""  
+    def RightH(self):
         self.swap(4,0,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(5,1,2,2,2,2)
         self.swap(4,0,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(5,1,1,2,1,2)
         self.swap(4,0,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(5,1,0,2,0,2)
         self.swap(2,2,0,0,2,0),self.swap(2,2,2,0,2,2),self.swap(2,2,2,2,0,2)
         self.swap(2,2,1,0,2,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,2,0,1)
+    """Вращение правой грани против часовой стрелки"""
     def RightC(self):
         self.swap(5,1,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(4,0,2,2,2,2)
         self.swap(5,1,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(4,0,1,2,1,2)
         self.swap(5,1,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(4,0,0,2,0,2)
         self.swap(2,2,2,2,0,2),self.swap(2,2,2,0,2,2),self.swap(2,2,0,0,2,0)
         self.swap(2,2,1,2,0,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,0,2,1)
+    """Вращение верхней грани дважды"""
+    def Right2(self):
+        self.swap(4,0,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(5,1,2,2,2,2)
+        self.swap(4,0,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(5,1,1,2,1,2)
+        self.swap(4,0,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(5,1,0,2,0,2)
+        self.swap(2,2,0,0,2,0),self.swap(2,2,2,0,2,2),self.swap(2,2,2,2,0,2)
+        self.swap(2,2,1,0,2,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,2,0,1)
+        self.swap(4,0,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(5,1,2,2,2,2)
+        self.swap(4,0,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(5,1,1,2,1,2)
+        self.swap(4,0,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(5,1,0,2,0,2)
+        self.swap(2,2,0,0,2,0),self.swap(2,2,2,0,2,2),self.swap(2,2,2,2,0,2)
+        self.swap(2,2,1,0,2,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,2,0,1)
+    """Вращение верхней грани по часовой стрелке"""
+    def UpH(self):
+        self.swap(3,5,0,2,0,0),self.swap(5,2,0,0,2,0),self.swap(2,4,2,0,2,2)
+        self.swap(3,5,1,2,0,1),self.swap(5,2,0,1,1,0),self.swap(2,4,1,0,2,1)
+        self.swap(3,5,2,2,0,2),self.swap(5,2,0,2,0,0),self.swap(2,4,0,0,2,0)
+        self.swap(0,0,0,0,2,0),self.swap(0,0,2,0,2,2),self.swap(0,0,2,2,0,2)
+        self.swap(0,0,0,1,1,0),self.swap(0,0,1,0,2,1),self.swap(0,0,2,1,1,2)
+    """Вращение верхней грани против часовой стрелки"""
+    def UpC(self):
+        self.swap(2,4,2,0,2,2),self.swap(5,2,0,0,2,0),self.swap(3,5,0,2,0,0)
+        self.swap(2,4,1,0,2,1),self.swap(5,2,0,1,1,0),self.swap(3,5,1,2,0,1)
+        self.swap(2,4,0,0,2,0),self.swap(5,2,0,2,0,0),self.swap(3,5,2,2,0,2)
+        self.swap(0,0,2,2,0,2),self.swap(0,0,2,0,2,2),self.swap(0,0,0,0,2,0)
+        self.swap(0,0,2,1,1,2),self.swap(0,0,1,0,2,1),self.swap(0,0,0,1,1,0)
+    """Вращение верней грани дважды"""
+    def Up2(self):
+        self.swap(3,5,0,2,0,0),self.swap(5,2,0,0,2,0),self.swap(2,4,2,0,2,2)
+        self.swap(3,5,1,2,0,1),self.swap(5,2,0,1,1,0),self.swap(2,4,1,0,2,1)
+        self.swap(3,5,2,2,0,2),self.swap(5,2,0,2,0,0),self.swap(2,4,0,0,2,0)
+        self.swap(0,0,0,0,2,0),self.swap(0,0,2,0,2,2),self.swap(0,0,2,2,0,2)
+        self.swap(0,0,0,1,1,0),self.swap(0,0,1,0,2,1),self.swap(0,0,2,1,1,2)
+        self.swap(3,5,0,2,0,0),self.swap(5,2,0,0,2,0),self.swap(2,4,2,0,2,2)
+        self.swap(3,5,1,2,0,1),self.swap(5,2,0,1,1,0),self.swap(2,4,1,0,2,1)
+        self.swap(3,5,2,2,0,2),self.swap(5,2,0,2,0,0),self.swap(2,4,0,0,2,0)
+        self.swap(0,0,0,0,2,0),self.swap(0,0,2,0,2,2),self.swap(0,0,2,2,0,2)
+        self.swap(0,0,0,1,1,0),self.swap(0,0,1,0,2,1),self.swap(0,0,2,1,1,2)
     """Печатает массив"""
     def repr(self):
         for i in range(len(self.__a)):
@@ -30,5 +70,8 @@ class face_rotation:
     def __data(self):
         return self.__a
 x = face_rotation()
+x.RightH()
+x.UpH()
 x.RightC()
+x.UpC()
 x.repr()
