@@ -1,13 +1,34 @@
+import numpy as np
 class face_rotation:
     """Создаём массив кубика Рубика"""
-    def __init__(self,a=[[[1,1,1],[1,1,1],[2,2,2]],[[2,2,2],[2,2,2],[2,2,2]],[[3,3,3],[3,3,3],[3,3,3]],[[4,4,4],[4,4,4],[4,4,4]],[[5,5,5],[5,5,5],[5,5,5]],[[6,6,6],[6,6,6],[6,6,6]]]):
-        a.self = a
+    def __init__(self,a=[[[1,1,1],[1,1,1],[1,1,1]],[[2,2,2],[2,2,2],[2,2,2]],[[3,3,3],[3,3,3],[3,3,3]],[[4,4,4],[4,4,4],[4,4,4]],[[5,5,5],[5,5,5],[5,5,5]],[[6,6,6],[6,6,6],[6,6,6]]]):
+        self.__a = np.array(a)
     """Функция обменивания значений двух элементов массива"""
     def swap(self,a1,a2,y1,x1,y2,x2):
-        a.self[a1,y1,x1],a.self[a2,y2,x2] = a.self[a2,y2,x2],a.self[a1,y1,x1]        
+        self.__a[a1,y1,x1],self.__a[a2,y2,x2] = self.__a[a2,y2,x2],self.__a[a1,y1,x1]        
     def RightU(self):
-        swap(5,1,2,2,2,2),swap(1,6,2,2,2,2),swap(6,2,2,2,2,2)
-face_rotation()
-face_rotation.RightU()
-
-
+        self.swap(4,0,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(5,1,2,2,2,2)
+        self.swap(4,0,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(5,1,1,2,1,2)
+        self.swap(4,0,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(5,1,0,2,0,2)
+        self.swap(2,2,0,0,2,0),self.swap(2,2,2,0,2,2),self.swap(2,2,2,2,0,2)
+        self.swap(2,2,1,0,2,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,2,0,1)
+    def RightC(self):
+        self.swap(5,1,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(4,0,2,2,2,2)
+        self.swap(5,1,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(4,0,1,2,1,2)
+        self.swap(5,1,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(4,0,0,2,0,2)
+        self.swap(2,2,2,2,0,2),self.swap(2,2,2,0,2,2),self.swap(2,2,0,0,2,0)
+        self.swap(2,2,1,2,0,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,0,2,1)
+    """Печатает массив"""
+    def repr(self):
+        for i in range(len(self.__a)):
+            for j in range(len(self.__a[0])):
+                for q in range(len(self.__a[0][0])):
+                    print(self.__a[i,j,q], end = ' ')
+                print()
+            print()
+    """Возвращает массив"""
+    def __data(self):
+        return self.__a
+x = face_rotation()
+x.RightC()
+x.repr()
