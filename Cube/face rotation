@@ -58,6 +58,32 @@ class face_rotation:
         self.swap(3,5,2,2,0,2),self.swap(5,2,0,2,0,0),self.swap(2,4,0,0,2,0)
         self.swap(0,0,0,0,2,0),self.swap(0,0,2,0,2,2),self.swap(0,0,2,2,0,2)
         self.swap(0,0,0,1,1,0),self.swap(0,0,1,0,2,1),self.swap(0,0,2,1,1,2)
+    """Поворот фронтальной грани по часовой стрелке""" 
+    def FrontH(self):
+        self.swap(2,0,2,2,2,2),self.swap(0,3,2,2,2,2),self.swap(3,5,2,2,2,0)
+        self.swap(2,0,2,1,2,1),self.swap(0,3,2,1,2,1),self.swap(3,5,2,1,2,1)
+        self.swap(2,0,2,0,2,0),self.swap(0,3,2,0,2,0),self.swap(3,5,2,0,2,2)
+        self.swap(5,5,0,2,0,0),self.swap(5,5,0,0,2,0),self.swap(5,5,2,0,2,2)
+        self.swap(5,5,1,0,2,1),self.swap(5,5,2,1,1,2),self.swap(5,5,1,2,0,1)
+    """Поворот фронтальной грани против часовой стрелки"""
+    def FrontC(self):
+        self.swap(3,5,2,2,2,0),self.swap(0,3,2,2,2,2),self.swap(2,0,2,2,2,2)
+        self.swap(3,5,2,1,2,1),self.swap(0,3,2,1,2,1),self.swap(2,0,2,1,2,1)
+        self.swap(3,5,2,0,2,2),self.swap(0,3,2,0,2,0),self.swap(2,0,2,0,2,0)
+        self.swap(5,5,2,0,2,2),self.swap(5,5,0,0,2,0),self.swap(5,5,0,2,0,0)
+        self.swap(5,5,1,2,0,1),self.swap(5,5,2,1,1,2),self.swap(5,5,1,0,2,1)
+    """Поворот фронтальной грани дважды"""
+    def Front2(self):
+        self.swap(2,0,2,2,2,2),self.swap(0,3,2,2,2,2),self.swap(3,5,2,2,2,0)
+        self.swap(2,0,2,1,2,1),self.swap(0,3,2,1,2,1),self.swap(3,5,2,1,2,1)
+        self.swap(2,0,2,0,2,0),self.swap(0,3,2,0,2,0),self.swap(3,5,2,0,2,2)
+        self.swap(5,5,0,2,0,0),self.swap(5,5,0,0,2,0),self.swap(5,5,2,0,2,2)
+        self.swap(5,5,1,0,2,1),self.swap(5,5,2,1,1,2),self.swap(5,5,1,2,0,1)
+        self.swap(2,0,2,2,2,2),self.swap(0,3,2,2,2,2),self.swap(3,5,2,2,2,0)
+        self.swap(2,0,2,1,2,1),self.swap(0,3,2,1,2,1),self.swap(3,5,2,1,2,1)
+        self.swap(2,0,2,0,2,0),self.swap(0,3,2,0,2,0),self.swap(3,5,2,0,2,2)
+        self.swap(5,5,0,2,0,0),self.swap(5,5,0,0,2,0),self.swap(5,5,2,0,2,2)
+        self.swap(5,5,1,0,2,1),self.swap(5,5,2,1,1,2),self.swap(5,5,1,2,0,1)
     """Печатает массив"""
     def repr(self):
         for i in range(len(self.__a)):
