@@ -1,37 +1,45 @@
+
+
+
+
+
+В данной версии кода ОЧЕНЬ много багов, сохранил её чтобы потом пофиксить, это лучше не смотреть
+
+
+
+
+
+
 import numpy as np
+from random import randint
 class face_rotation:
     """Создаём массив кубика Рубика"""
     def __init__(self,a=[[[1,1,1],[1,1,1],[1,1,1]],[[2,2,2],[2,2,2],[2,2,2]],[[3,3,3],[3,3,3],[3,3,3]],[[4,4,4],[4,4,4],[4,4,4]],[[5,5,5],[5,5,5],[5,5,5]],[[6,6,6],[6,6,6],[6,6,6]]]):
         self.__a = np.array(a)
     """Функция обменивания значений двух элементов массива"""
     def swap(self,a1,a2,y1,x1,y2,x2):
-        self.__a[a1,y1,x1],self.__a[a2,y2,x2] = self.__a[a2,y2,x2],self.__a[a1,y1,x1]      
+        self.__a[a1][y1][x1],self.__a[a2][y2][x2] = self.__a[a2][y2][x2],self.__a[a1][y1][x1]      
     """Вращение правой грани по часовой стрелке"""  
     def RightH(self):
         self.swap(4,0,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(5,1,2,2,2,2)
         self.swap(4,0,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(5,1,1,2,1,2)
         self.swap(4,0,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(5,1,0,2,0,2)
-        self.swap(2,2,0,0,2,0),self.swap(2,2,2,0,2,2),self.swap(2,2,2,2,0,2)
-        self.swap(2,2,1,0,2,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,2,0,1)
+        self.swap(2,2,0,0,0,2),self.swap(2,2,0,0,2,2),self.swap(2,2,0,0,2,0)
+        self.swap(2,2,0,1,1,2),self.swap(2,2,0,1,2,1),self.swap(2,2,0,1,1,0)
     """Вращение правой грани против часовой стрелки"""
     def RightC(self):
         self.swap(5,1,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(4,0,2,2,2,2)
         self.swap(5,1,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(4,0,1,2,1,2)
         self.swap(5,1,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(4,0,0,2,0,2)
-        self.swap(2,2,2,2,0,2),self.swap(2,2,2,0,2,2),self.swap(2,2,0,0,2,0)
-        self.swap(2,2,1,2,0,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,0,2,1)
+        self.swap(2,2,0,0,2,0),self.swap(2,2,0,0,2,2),self.swap(2,2,0,0,0,2)
+        self.swap(2,2,0,1,1,0),self.swap(2,2,0,1,2,1),self.swap(2,2,0,1,1,2)
     """Вращение верхней грани дважды"""
     def Right2(self):
-        self.swap(4,0,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(5,1,2,2,2,2)
-        self.swap(4,0,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(5,1,1,2,1,2)
-        self.swap(4,0,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(5,1,0,2,0,2)
-        self.swap(2,2,0,0,2,0),self.swap(2,2,2,0,2,2),self.swap(2,2,2,2,0,2)
-        self.swap(2,2,1,0,2,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,2,0,1)
-        self.swap(4,0,2,2,2,2),self.swap(0,5,2,2,2,2),self.swap(5,1,2,2,2,2)
-        self.swap(4,0,1,2,1,2),self.swap(0,5,1,2,1,2),self.swap(5,1,1,2,1,2)
-        self.swap(4,0,0,2,0,2),self.swap(0,5,0,2,0,2),self.swap(5,1,0,2,0,2)
-        self.swap(2,2,0,0,2,0),self.swap(2,2,2,0,2,2),self.swap(2,2,2,2,0,2)
-        self.swap(2,2,1,0,2,1),self.swap(2,2,2,1,1,2),self.swap(2,2,1,2,0,1)
+        self.swap(4,5,2,2,2,2),self.swap(0,1,2,2,2,2)
+        self.swap(4,5,1,2,1,2),self.swap(0,1,1,2,1,2)
+        self.swap(4,5,0,2,0,2),self.swap(0,1,0,2,0,2)
+        self.swap(2,2,2,0,0,2),self.swap(2,2,0,0,2,2)
+        self.swap(2,2,1,0,1,2),self.swap(2,2,0,1,2,1)
     """Вращение верхней грани по часовой стрелке"""
     def UpH(self):
         self.swap(3,5,0,2,0,0),self.swap(5,2,0,0,2,0),self.swap(2,4,2,0,2,2)
@@ -48,56 +56,168 @@ class face_rotation:
         self.swap(0,0,2,1,1,2),self.swap(0,0,1,0,2,1),self.swap(0,0,0,1,1,0)
     """Вращение верней грани дважды"""
     def Up2(self):
-        self.swap(3,5,0,2,0,0),self.swap(5,2,0,0,2,0),self.swap(2,4,2,0,2,2)
-        self.swap(3,5,1,2,0,1),self.swap(5,2,0,1,1,0),self.swap(2,4,1,0,2,1)
-        self.swap(3,5,2,2,0,2),self.swap(5,2,0,2,0,0),self.swap(2,4,0,0,2,0)
-        self.swap(0,0,0,0,2,0),self.swap(0,0,2,0,2,2),self.swap(0,0,2,2,0,2)
-        self.swap(0,0,0,1,1,0),self.swap(0,0,1,0,2,1),self.swap(0,0,2,1,1,2)
-        self.swap(3,5,0,2,0,0),self.swap(5,2,0,0,2,0),self.swap(2,4,2,0,2,2)
-        self.swap(3,5,1,2,0,1),self.swap(5,2,0,1,1,0),self.swap(2,4,1,0,2,1)
-        self.swap(3,5,2,2,0,2),self.swap(5,2,0,2,0,0),self.swap(2,4,0,0,2,0)
-        self.swap(0,0,0,0,2,0),self.swap(0,0,2,0,2,2),self.swap(0,0,2,2,0,2)
-        self.swap(0,0,0,1,1,0),self.swap(0,0,1,0,2,1),self.swap(0,0,2,1,1,2)
+        self.swap(3,2,2,2,0,0),self.swap(4,5,2,2,0,0)
+        self.swap(3,2,1,2,1,0),self.swap(4,5,2,1,0,1)
+        self.swap(3,2,0,2,2,0),self.swap(4,5,2,0,0,2)
+        self.swap(0,0,0,0,2,2),self.swap(0,0,0,2,2,0)
+        self.swap(0,0,0,1,2,1),self.swap(0,0,1,0,2,0)
     """Поворот фронтальной грани по часовой стрелке""" 
     def FrontH(self):
-        self.swap(2,0,2,2,2,2),self.swap(0,3,2,2,2,2),self.swap(3,5,2,2,2,0)
-        self.swap(2,0,2,1,2,1),self.swap(0,3,2,1,2,1),self.swap(3,5,2,1,2,1)
-        self.swap(2,0,2,0,2,0),self.swap(0,3,2,0,2,0),self.swap(3,5,2,0,2,2)
-        self.swap(5,5,0,2,0,0),self.swap(5,5,0,0,2,0),self.swap(5,5,2,0,2,2)
-        self.swap(5,5,1,0,2,1),self.swap(5,5,2,1,1,2),self.swap(5,5,1,2,0,1)
+        self.swap(2,1,2,0,2,2),self.swap(2,3,2,0,2,0),self.swap(2,0,2,0,2,0)
+        self.swap(2,1,2,1,2,1),self.swap(2,3,2,1,2,1),self.swap(2,0,2,1,2,1)
+        self.swap(2,1,2,2,2,0),self.swap(2,3,2,2,2,2),self.swap(2,0,2,2,2,2)
+        self.swap(5,5,0,0,0,2),self.swap(5,5,0,0,2,2),self.swap(5,5,0,0,2,0)
+        self.swap(5,5,0,1,1,2),self.swap(5,5,0,1,2,1),self.swap(5,5,0,1,1,0)
     """Поворот фронтальной грани против часовой стрелки"""
     def FrontC(self):
-        self.swap(3,5,2,2,2,0),self.swap(0,3,2,2,2,2),self.swap(2,0,2,2,2,2)
-        self.swap(3,5,2,1,2,1),self.swap(0,3,2,1,2,1),self.swap(2,0,2,1,2,1)
-        self.swap(3,5,2,0,2,2),self.swap(0,3,2,0,2,0),self.swap(2,0,2,0,2,0)
-        self.swap(5,5,2,0,2,2),self.swap(5,5,0,0,2,0),self.swap(5,5,0,2,0,0)
-        self.swap(5,5,1,2,0,1),self.swap(5,5,2,1,1,2),self.swap(5,5,1,0,2,1)
+        self.swap(2,0,2,0,2,0),self.swap(2,3,2,0,2,0),self.swap(2,1,2,0,2,2)
+        self.swap(2,0,2,1,2,1),self.swap(2,3,2,1,2,1),self.swap(2,1,2,1,2,1)
+        self.swap(2,0,2,2,2,2),self.swap(2,3,2,2,2,2),self.swap(2,1,2,2,2,0)
+        self.swap(5,5,0,0,2,0),self.swap(5,5,0,0,2,2),self.swap(5,5,0,0,0,2)
+        self.swap(5,5,0,1,1,0),self.swap(5,5,0,1,2,1),self.swap(5,5,0,1,1,2)
     """Поворот фронтальной грани дважды"""
     def Front2(self):
-        self.swap(2,0,2,2,2,2),self.swap(0,3,2,2,2,2),self.swap(3,5,2,2,2,0)
-        self.swap(2,0,2,1,2,1),self.swap(0,3,2,1,2,1),self.swap(3,5,2,1,2,1)
-        self.swap(2,0,2,0,2,0),self.swap(0,3,2,0,2,0),self.swap(3,5,2,0,2,2)
-        self.swap(5,5,0,2,0,0),self.swap(5,5,0,0,2,0),self.swap(5,5,2,0,2,2)
-        self.swap(5,5,1,0,2,1),self.swap(5,5,2,1,1,2),self.swap(5,5,1,2,0,1)
-        self.swap(2,0,2,2,2,2),self.swap(0,3,2,2,2,2),self.swap(3,5,2,2,2,0)
-        self.swap(2,0,2,1,2,1),self.swap(0,3,2,1,2,1),self.swap(3,5,2,1,2,1)
-        self.swap(2,0,2,0,2,0),self.swap(0,3,2,0,2,0),self.swap(3,5,2,0,2,2)
-        self.swap(5,5,0,2,0,0),self.swap(5,5,0,0,2,0),self.swap(5,5,2,0,2,2)
-        self.swap(5,5,1,0,2,1),self.swap(5,5,2,1,1,2),self.swap(5,5,1,2,0,1)
+        self.swap(3,2,2,0,2,0),self.swap(0,1,2,0,0,2)
+        self.swap(3,2,2,1,2,1),self.swap(0,1,2,1,0,1)
+        self.swap(3,2,2,2,2,2),self.swap(0,1,2,2,0,0)
+        self.swap(5,5,2,0,0,2),self.swap(5,5,0,0,2,2)
+        self.swap(5,5,1,0,1,2),self.swap(5,5,0,1,2,1)
+    """Поворот левой грани по часовой стрелке"""
+    def LeftH(self):
+        self.swap(5,1,2,0,2,0),self.swap(0,5,2,0,2,0),self.swap(4,0,2,0,2,0)
+        self.swap(5,1,1,0,1,0),self.swap(0,5,1,0,1,0),self.swap(4,0,1,0,1,0)
+        self.swap(5,1,0,0,0,0),self.swap(0,5,0,0,0,0),self.swap(4,0,0,0,0,0)
+        self.swap(3,3,2,2,0,2),self.swap(3,3,2,0,2,2),self.swap(3,3,0,0,2,0)
+        self.swap(3,3,1,2,0,1),self.swap(3,3,2,1,1,2),self.swap(3,3,1,0,2,1)
+    """Поворот левой грани против часовой стрелки"""
+    def LeftC(self):
+        self.swap(4,0,2,0,2,0),self.swap(0,5,2,0,2,0),self.swap(5,1,2,0,2,0)
+        self.swap(4,0,1,0,1,0),self.swap(0,5,1,0,1,0),self.swap(5,1,1,0,1,0)
+        self.swap(4,0,0,0,0,0),self.swap(0,5,0,0,0,0),self.swap(5,1,0,0,0,0)
+        self.swap(3,3,0,0,2,0),self.swap(3,3,2,0,2,2),self.swap(3,3,2,2,0,2)
+        self.swap(3,3,1,0,2,1),self.swap(3,3,2,1,1,2),self.swap(3,3,1,2,0,1)
+    """Поворот левой грани дважды"""
+    def Left2(self):
+        self.swap(4,5,2,0,2,0),self.swap(0,1,2,0,2,0)
+        self.swap(4,5,1,0,1,0),self.swap(0,1,1,0,1,0)
+        self.swap(4,5,0,0,0,0),self.swap(0,1,0,0,0,0)
+        self.swap(3,3,2,0,0,2),self.swap(3,3,0,0,2,2)
+        self.swap(3,3,1,0,1,2),self.swap(3,3,0,1,2,1)
+    """Поворот задней грани по часовой стрелке"""
+    #def BackH(self):
+        
+    """Поворот задней грани против часовой стелки"""
+    #def BackC(self):
+        
+    """Поворот задней грани дважды"""
+    #def Back2(self):
+        
     """Печатает массив"""
     def repr(self):
+        self.repry = [[0] * 9 for i in range(12)]
+        for i in range(3):
+            for j in range(3):
+                self.repry[i][j+3] = self.__a[4][i][j]
+                self.repry[i+3][j] = self.__a[3][i][j]
+                self.repry[i+3][j+3] = self.__a[0][i][j]
+                self.repry[i+3][j+6] = self.__a[2][i][j]
+                self.repry[i+6][j+3] = self.__a[5][i][j]
+                self.repry[i+9][j+3] = self.__a[1][i][j]
+        for i in range(len(self.repry)):
+            for j in range(len(self.repry[0])):
+                if(self.repry[i][j]==0):
+                    print(',', end = ' ')
+                else:
+                    print(self.repry[i][j], end = ' ')
+            print()
+            """
         for i in range(len(self.__a)):
             for j in range(len(self.__a[0])):
                 for q in range(len(self.__a[0][0])):
-                    print(self.__a[i,j,q], end = ' ')
-                print()
-            print()
+                    print(self.__a[i][j][q], end = ' ')
+                print()"""
     """Возвращает массив"""
     def __data(self):
         return self.__a
+    def Confusing(self):
+        self.__a = [[[1,1,1],[1,1,1],[1,1,1]],[[2,2,2],[2,2,2],[2,2,2]],[[3,3,3],[3,3,3],[3,3,3]],[[4,4,4],[4,4,4],[4,4,4]],[[5,5,5],[5,5,5],[5,5,5]],[[6,6,6],[6,6,6],[6,6,6]]]
+        self.count = 0
+        self.scramble = []
+        for i in range(30):
+            self.r = randint(1,5)
+            if(self.r == 1) and (self.count != 1):
+                self.r = randint(1,3)
+                if(self.r == 1):
+                    self.RightH()
+                    self.count = 1
+                    self.scramble.append("R")
+                if(self.r == 2):
+                    self.RightC()
+                    self.count = 1
+                    self.scramble.append("R'")
+                if(self.r == 3):
+                    self.Right2()
+                    self.count = 1
+                    self.scramble.append("R2")
+            if(self.r == 2) and (self.count !=2):
+                self.r = randint(1,3)
+                if(self.r == 1):
+                    self.LeftH()
+                    self.count = 2
+                    self.scramble.append("L")
+                if(self.r == 2):
+                    self.LeftC()
+                    self.count = 2
+                    self.scramble.append("L'")
+                if(self.r == 3):
+                    self.Left2()
+                    self.count = 2
+                    self.scramble.append("L2")
+            if(self.r == 3) and (self.count != 3):
+                self.r = randint(1,3)
+                if(self.r == 1) and (self.count !=3):
+                    self.BackH()
+                    self.count = 3
+                    self.scramble.append("B")
+                if(self.r == 2):
+                    self.BackC()
+                    self.count = 3
+                    self.scramble.append("B'")
+                if(self.r == 3):
+                    self.Back2()
+                    self.count = 3
+                    self.scramble.append("B2")
+            if(self.r == 4) and (self.count != 4):
+                self.r = randint(1,3)
+                if(self.r == 1):
+                    self.UpH()
+                    self.count = 4
+                    self.scramble.append("U")
+                if(self.r == 2):
+                    self.UpC()
+                    self.count = 4
+                    self.scramble.append("U'")
+                if(self.r == 3):
+                    self.Up2()
+                    self.count = 4
+                    self.scramble.append("U2")
+            if(self.r == 5) and (self.count !=5):
+                self.r = randint(1,3)
+                if(self.r == 1):
+                    self.FrontH()
+                    self.count = 5
+                    self.scramble.append("F")
+                if(self.r == 2):
+                    self.FrontC()
+                    self.count = 5
+                    self.scramble.append("F'")
+                if(self.r == 3):
+                    self.Front2()
+                    self.count = 5
+                    self.scramble.append("F2")
+        for i in self.scramble:
+            print(i, end = ' ')
+        print()
 x = face_rotation()
-x.RightH()
-x.UpH()
-x.RightC()
-x.UpC()
+x.Confusing()
 x.repr()
